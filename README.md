@@ -271,7 +271,7 @@ class MainActivity : AppCompatActivity() {
 <a id="e"></a>
 <h4>5.效果展示</h4>
 
-<img src="https://badgameshow.com/fly/wp-content/uploads/2021/07/1626937439782.gif" width="40%"/>
+<img src="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif" width="20%"/>
 
 <a id="f"></a>
 <h4>6.Github</h4>
