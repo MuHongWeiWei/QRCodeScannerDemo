@@ -266,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 <a id="e"></a>
 #### 5.效果展示
 
-<a href="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif"><img src="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif" width="50%"/></a>
+<a href="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif"><img src="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif" width="30%"/></a>
 
 <a id="f"></a>
 #### 6.Github
