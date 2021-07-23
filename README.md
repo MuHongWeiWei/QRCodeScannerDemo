@@ -1,43 +1,40 @@
-<h1>Android QRCode掃描器 各種條碼都能掃</h1>
+# Android QR Code 掃描 各種條碼都能掃
 
+##### 透過Google Vision套件快速製作屬於自己的QR Code 掃描，進行QR Code 掃描各種條碼都能掃，Android QR Code利用相機功能・透過Mobile Vision API 解析QR Code，各種條碼都能掃。
+
+---
+
+#### 文章目錄
 <ol>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#a">導入Google Vision</a></li>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#b">聲明相機權限</a></li>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#c">布局&方法介紹</a></li>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#d">程式碼範例</a></li>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#e">效果展示</a></li>
- <li><a href="https://badgameshow.com/fly/android-qr-code掃描器-各種條碼都能掃/fly/android/#f">Github</a></li>
-
+    <li><a href="#a">導入Google Vision</a></li>
+    <li><a href="#b">聲明相機權限</a></li>
+    <li><a href="#c">布局&方法介紹</a></li>
+    <li><a href="#d">程式碼範例</a></li>
+    <li><a href="#e">效果展示</a></li>
+    <li><a href="#f">Github</a></li>
 </ol>
 
-<hr />
+---
 
 <a id="a"></a>
-
-<h3>1.導入Google Vision</h3>
-
-<h4>build.gradle(Module)</h4>
-
-<pre><code class="language-Gradle line-numbers">dependencies {
+#### 1.導入Google Vision
+```Gradle
+dependencies {
      implementation 'com.google.android.gms:play-services-vision:20.1.3'
 }
-</code></pre>
+```
+
 
 <a id="b"></a>
-
-<h3>2.聲明相機權限</h3>
-
+#### 2.聲明相機權限
 ```XML
 <uses-permission android:name="android.permission.CAMERA"/>
 ```
 
-
 <a id="c"></a>
+#### 3.布局&方法介紹
 
-<h3>3.布局&方法介紹</h3>
-
-<h4>布局</h4>
-
+##### 布局
 ```XML
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -77,29 +74,28 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-<h4>方法介紹</h4>
-
-<h5>偵測Barcode樣式</h5>
-
-<pre><code class="language-Kotlin line-numbers">BarcodeDetector.Builder(this@MainActivity)
+##### 方法介紹
+###### 偵測Barcode樣式
+```Kotlin
+BarcodeDetector.Builder(this@MainActivity)
         .setBarcodeFormats(Barcode.ALL_FORMATS)
         .build()
-</code></pre>
+```
 
-<h5>創建Camera</h5>
-
-<pre><code class="language-Kotlin line-numbers">//傳入Barcode樣式
+###### 創建Camera
+```Kotlin
+//傳入Barcode樣式
 CameraSource.Builder(this@MainActivity, barcodeDetector)
         //自動對焦
         .setAutoFocusEnabled(true)
         //預覽寬高
         .setRequestedPreviewSize(measuredWidth, measuredHeight)
         .build()
-</code></pre>
+```
 
-<h5>綁定Camera</h5>
-
-<pre><code class="language-Kotlin line-numbers">holder.addCallback(object : SurfaceHolder.Callback {
+###### 綁定Camer
+```Kotlin
+holder.addCallback(object : SurfaceHolder.Callback {
     override fun surfaceCreated(holder: SurfaceHolder) {
         cameraSource.start(holder)
     }
@@ -112,11 +108,11 @@ CameraSource.Builder(this@MainActivity, barcodeDetector)
         cameraSource.stop()
     }
 })
-</code></pre>
+```
 
-<h5>掃描完成資料回傳</h5>
-
-<pre><code class="language-Kotlin line-numbers">barcodeDetector.setProcessor(object : Detector.Processor<Barcode> {
+###### 掃描完成資料回傳
+```Kotlin
+barcodeDetector.setProcessor(object : Detector.Processor<Barcode> {
     override fun release() {
 
     }
@@ -132,13 +128,12 @@ CameraSource.Builder(this@MainActivity, barcodeDetector)
         }
     }
 })
-</code></pre>
+```
 
 <a id="d"></a>
-<h3>4.程式碼範例</h3>
+#### 4.程式碼範例
 
-<pre><code class="language-Kotlin line-numbers">package com.example.qrcodescannerdemo
-
+```Kotlin
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -266,14 +261,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-</code></pre>
+```
 
 <a id="e"></a>
-<h4>5.效果展示</h4>
+#### 5.效果展示
 
-<img src="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif" width="20%"/>
+<a href="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif"><img src="https://github.com/MuHongWeiWei/QRCodeScannerDemo/blob/master/app/src/main/res/drawable/demo.gif" width="50%"/></a>
 
 <a id="f"></a>
-<h4>6.Github</h4>
-
-<a class="wp-editor-md-post-content-link" href="https://github.com/MuHongWeiWei/QRCodeScannerDemo">Github</a>
+#### 6.Github
+<a href="https://github.com/MuHongWeiWei/QRCodeScannerDemo">Github</a>
